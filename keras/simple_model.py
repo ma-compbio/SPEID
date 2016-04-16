@@ -25,8 +25,9 @@ print 'building model'
 
 model = Sequential()
 
+# Add one convolutional/max-pooling layer, with 20% dropout
 model.add(Convolution1D(input_dim=4, # one-hot coding of ATCG
-                        input_length=1000,
+                        input_length=1000, # data comes in 1kbp windows
                         nb_filter=320, # number of kernels
                         filter_length=26, # kernel width
                         border_mode="valid", # something about padding input
@@ -35,16 +36,8 @@ model.add(Convolution1D(input_dim=4, # one-hot coding of ATCG
 model.add(MaxPooling1D(pool_length=13, stride=13))
 model.add(Dropout(0.2))
 
-model.add(Convolution1D(nb_filter=320, # number of kernels
-                        filter_length=26, # kernel width
-                        border_mode="valid", # something about padding input
-                        activation="relu", # rectified linear unit; dunno why
-                        subsample_length=1)) # don't subsample
-model.add(MaxPooling1D(pool_length=13, stride=13))
-model.add(Dropout(0.2))
-
+# Add two dense layers
 model.add(Flatten())
-
 model.add(Dense(input_dim=75*640, output_dim=925))
 model.add(Activation('relu'))
 
