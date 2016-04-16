@@ -53,7 +53,8 @@ model.add(Activation('sigmoid'))
 
 print 'compiling model...'
 model.compile(loss='binary_crossentropy',
-              optimizer='rmsprop')
+              optimizer='rmsprop',
+              metrics=["accuracy"])
 
 print 'running at most 60 epochs...'
 
@@ -70,7 +71,6 @@ model.fit(X_train,
           nb_epoch=30, # TODO: change to 60
           verbose=1, # show progress bar
           shuffle=True,
-          show_accuracy=True,
           validation_data=(np.transpose(validmat['validxdata'], axes=(0,2,1)),
                            validmat['validdata']),
           callbacks=[checkpointer, earlystopper])
