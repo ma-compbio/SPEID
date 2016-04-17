@@ -1,12 +1,13 @@
 import numpy as np
 import h5py
 import scipy.io
-np.random.seed(0) # for reproducibility
+import time
+np.random.seed(1337) # for reproducibility
+
 from keras.models import Sequential
 from keras.layers.core import Dense, Dropout, Activation, Flatten
 from keras.layers.convolutional import Convolution1D, MaxPooling1D
 from keras.callbacks import ModelCheckpoint, EarlyStopping
-import time
 
 print 'loading data'
 
