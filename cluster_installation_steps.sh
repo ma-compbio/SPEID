@@ -1,9 +1,7 @@
 # Installing theano, keras, and their dependencies was surprisingly painful, so
 # here's a script that should accomplish this for you
-# Note that this was written after I did this directly on the command line, so
-# I haven't tested it, and am not sure that it works, line for line.
-
-#!/bin/bash
+# Note that this shell script was written after I did this directly on the
+# command line, so I haven't tested it, and am not sure that it works.
 
 # Download and install Python
 wget https://www.python.org/ftp/python/2.7.11/Python-2.7.11.tar.xz
@@ -54,4 +52,12 @@ cd ..
 # to the details of out local setup). Ignore the many, many warnings...
 python2.7 -c "import numpy; numpy.test()" # Takes ~1m and fails
 python2.7 -c "import scipy; scipy.test()" # Takes ~5m
-python2.7 -c "import theano; theano.test()" # Takes ~30m
+python2.7 -c "import theano; theano.test()" # Takes ~1h
+
+# In order for the Python to work next time you log in, add the following to
+# your .bashrc:
+#
+# PYTHONPATH="${PYTHONPATH}:{$HOME}/local/lib/python2.7/site-packages/"
+# export PYTHONPATH
+# export LD_LIBRARY_PATH=$HOME/local/lib
+# alias python2.7=$HOME/local/bin/python2.7
