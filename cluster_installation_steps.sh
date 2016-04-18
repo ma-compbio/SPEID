@@ -35,7 +35,7 @@ export HDF5_DIR=$HOME/local
 
 # fortunately, newer versions of Python come packaged with pip
 # this step takes a while (especially scipy)
-python2.7 -m pip install numpy scipy nose theano h5py keras
+python2.7 -m pip install numpy scipy nose theano h5py keras==0.2.0
 
 git clone https://github.com/xianyi/OpenBLAS  
 cd OpenBLAS  
