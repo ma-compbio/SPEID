@@ -77,7 +77,7 @@ test_results = model.evaluate(np.transpose(testmat['testxdata'],
                               testmat['testdata'],
                               show_accuracy=True)
 
-testing_time = time.time() - t_start_test()
+testing_time = time.time() - t_start_test
 
 print test_results
 print "Total time taken: " + str(training_time + testing_time) + " seconds"
