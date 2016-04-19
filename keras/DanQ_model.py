@@ -12,8 +12,8 @@ from keras.regularizers import l2, activity_l1
 from keras.constraints import maxnorm
 from keras.layers.recurrent import LSTM, GRU
 from keras.callbacks import ModelCheckpoint, EarlyStopping
-# from seya.layers.recurrent import Bidirectional
-# from keras.utils.layer_utils import print_layer_shapes
+from seya.layers.recurrent import Bidirectional
+from keras.utils.layer_utils import print_layer_shapes
 
 
 print 'loading data'
@@ -28,9 +28,9 @@ y_train = np.array(trainmat['traindata'])
 validmat = scipy.io.loadmat('data/valid.mat')
 testmat = scipy.io.loadmat('data/test.mat')
 
-# forward_lstm = LSTM(input_dim=320, output_dim=320, return_sequences=True)
-# backward_lstm = LSTM(input_dim=320, output_dim=320, return_sequences=True)
-# brnn = Bidirectional(forward=forward_lstm, backward=backward_lstm, return_sequences=True)
+forward_lstm = LSTM(input_dim=320, output_dim=320, return_sequences=True)
+backward_lstm = LSTM(input_dim=320, output_dim=320, return_sequences=True)
+brnn = Bidirectional(forward=forward_lstm, backward=backward_lstm, return_sequences=True)
 
 print 'building model'
 
@@ -47,9 +47,9 @@ model.add(MaxPooling1D(pool_length=13, stride=13))
 
 model.add(Dropout(0.2))
 
-# model.add(brnn)
-# 
-# model.add(Dropout(0.5))
+model.add(brnn)
+
+model.add(Dropout(0.5))
 
 model.add(Flatten())
 
