@@ -1,12 +1,13 @@
 import numpy as np
 import h5py
 import scipy.io
-np.random.seed(0) # for reproducibility
+import time
+np.random.seed(1337) # for reproducibility
+
 from keras.models import Sequential
 from keras.layers.core import Dense, Dropout, Activation, Flatten
 from keras.layers.convolutional import Convolution1D, MaxPooling1D
 from keras.callbacks import ModelCheckpoint, EarlyStopping
-import time
 
 print 'loading data'
 
@@ -76,7 +77,7 @@ test_results = model.evaluate(np.transpose(testmat['testxdata'],
                               testmat['testdata'],
                               show_accuracy=True)
 
-testing_time = time.time() - t_start_test()
+testing_time = time.time() - t_start_test
 
 print test_results
 print "Total time taken: " + str(training_time + testing_time) + " seconds"
