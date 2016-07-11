@@ -1,5 +1,0 @@
-load_seq.py is for loading the dataset with labels. 
-Sequence data are stored in images.mat as N*M matrx. Each row is a 1-D sequence encoded with 1234.
-cnn_1D.py is for training and prediction with CNN. 2-D convolution is adjusted to 1-D convolution 
-by setting window height to be 1. 2-D max pooling is adjusted to 1-d max pooling.
-
