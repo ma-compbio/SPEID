@@ -1,5 +1,7 @@
 # Data files
+data/*
 *.mat
+*.zip
 
 # Network Weight Files
 *.hdf5
