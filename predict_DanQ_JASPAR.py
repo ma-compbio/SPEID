@@ -18,10 +18,14 @@ import theano
 
 import load_data
 
+#forward_lstm = LSTM(input_dim=1024, output_dim=512, return_sequences=True)
+#backward_lstm = LSTM(input_dim=1024, output_dim=512, return_sequences=True)
+#brnn = Bidirectional(forward=forward_lstm, backward=backward_lstm,
+#        return_sequences=True)
+
 forward_lstm = LSTM(input_dim=1024, output_dim=512, return_sequences=True)
-backward_lstm = LSTM(input_dim=1024, output_dim=512, return_sequences=True)
-brnn = Bidirectional(forward=forward_lstm, backward=backward_lstm,
-        return_sequences=True)
+backward_lstm = LSTM(input_dim=1024, output_dim=512, return_sequences=True, go_backwards=True)
+brnn = Bidirectional(forward=forward_lstm, backward=backward_lstm, return_sequences=True)
 
 print 'building model...'
 
@@ -45,16 +49,16 @@ print 'compiling model...'
 model.compile(loss='binary_crossentropy', optimizer='rmsprop',
         class_mode="binary")
 
-weights_file = '/home/sss1/Desktop/projects/DeepInteractions/DanQ-JASPAR_bestmodel.hdf5'
+weights_file = '/home/sss1/Desktop/projects/DeepInteractions/weights/myDanQ-JASPAR_bestmodel.hdf5'
 print 'loading weights from ' + weights_file + '...'
 model.load_weights(weights_file)
 
-print 'loading input data...'
-path = '/home/sss1/Desktop/projects/DeepInteractions'
-file_root = 'pairs_epK562positive_seq2_sepwin'
+path = '/home/sss1/Desktop/projects/DeepInteractions/data/pairs_ep/'
+file_root = 'pairs_epK562positive_seq2alt_sepwin'
 # file_root = sys.argv[1] # USE COMMAND LINE ARG
 suffix_in = '.txt'
 data_path = path + file_root + suffix_in
+print 'loading input data from ' + data_path
 Xs = np.transpose(load_data.load_and_format_data(data_path), axes=(0,2,1))
 print 'Successfully loaded ' + str(Xs.shape[0]) + ' samples.'
 

@@ -1,6 +1,4 @@
 import numpy as np
-import random as rand
-import warnings
 import sys
 
 # reads the specified file and returns a num_samples X 4 X 1000 array
