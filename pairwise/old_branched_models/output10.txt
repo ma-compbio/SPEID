@@ -1,0 +1,392 @@
+Using Theano backend.
+Using gpu device 0: GeForce GTX 1080 (CNMeM is disabled, cuDNN 5005)
+Loading data from
+/home/sss1/Desktop/projects/DeepInteractions/data/uniform_len/K562/K562_ep_split.h5
+Building model...
+Initializing 519 kernels with JASPAR motifs.
+Compiling model...
+____________________________________________________________________________________________________
+Layer (type)                     Output Shape          Param #     Connected to                     
+====================================================================================================
+convolution1d_1 (Convolution1D)  (None, 2971, 1024)    123904                                       
+____________________________________________________________________________________________________
+maxpooling1d_1 (MaxPooling1D)    (None, 198, 1024)     0                                            
+____________________________________________________________________________________________________
+dropout_1 (Dropout)              (None, 198, 1024)     0                                            
+____________________________________________________________________________________________________
+bidirectional_1 (Bidirectional)  (None, 198, 64)       270592                                       
+____________________________________________________________________________________________________
+dropout_2 (Dropout)              (None, 198, 64)       0                                            
+____________________________________________________________________________________________________
+convolution1d_2 (Convolution1D)  (None, 1971, 1024)    123904                                       
+____________________________________________________________________________________________________
+maxpooling1d_2 (MaxPooling1D)    (None, 131, 1024)     0                                            
+____________________________________________________________________________________________________
+dropout_3 (Dropout)              (None, 131, 1024)     0                                            
+____________________________________________________________________________________________________
+bidirectional_2 (Bidirectional)  (None, 131, 64)       270592                                       
+____________________________________________________________________________________________________
+dropout_4 (Dropout)              (None, 131, 64)       0                                            
+____________________________________________________________________________________________________
+flatten_1 (Flatten)              (None, 21056)         0
+merge_1[0][0]                    
+____________________________________________________________________________________________________
+dense_1 (Dense)                  (None, 925)           19477725
+flatten_1[0][0]                  
+____________________________________________________________________________________________________
+dense_2 (Dense)                  (None, 1)             926
+dense_1[0][0]                    
+====================================================================================================
+Total params: 20267643
+____________________________________________________________________________________________________
+Running at most 64 epochs...
+Train on 100000 samples, validate on 10000 samples
+Epoch 1/64
+ 99900/100000 [============================>.] - ETA: 1s - loss: 0.7056 - acc:
+0.5437Epoch 00000: val_loss improved from inf to 0.66084, saving model to
+/home/sss1/Desktop/projects/DeepInteractions/weights/myDanQ-JASPAR_bestmodel-2016-08-28-14:36:44.hdf5
+100000/100000 [==============================] - 1407s - loss: 0.7056 - acc:
+0.5437 - val_loss: 0.6608 - val_acc: 0.5917
+Epoch 2/64
+ 99900/100000 [============================>.] - ETA: 1s - loss: 0.6857 - acc:
+0.5725Epoch 00001: val_loss improved from 0.66084 to 0.65893, saving model to
+/home/sss1/Desktop/projects/DeepInteractions/weights/myDanQ-JASPAR_bestmodel-2016-08-28-14:36:44.hdf5
+100000/100000 [==============================] - 1402s - loss: 0.6858 - acc:
+0.5724 - val_loss: 0.6589 - val_acc: 0.5997
+Epoch 3/64
+ 99900/100000 [============================>.] - ETA: 1s - loss: 0.6752 - acc:
+0.5842Epoch 00002: val_loss improved from 0.65893 to 0.65032, saving model to
+/home/sss1/Desktop/projects/DeepInteractions/weights/myDanQ-JASPAR_bestmodel-2016-08-28-14:36:44.hdf5
+100000/100000 [==============================] - 1405s - loss: 0.6752 - acc:
+0.5842 - val_loss: 0.6503 - val_acc: 0.6147
+Epoch 4/64
+ 99900/100000 [============================>.] - ETA: 1s - loss: 0.6698 - acc:
+0.5918Epoch 00003: val_loss improved from 0.65032 to 0.64828, saving model to
+/home/sss1/Desktop/projects/DeepInteractions/weights/myDanQ-JASPAR_bestmodel-2016-08-28-14:36:44.hdf5
+100000/100000 [==============================] - 1416s - loss: 0.6698 - acc:
+0.5918 - val_loss: 0.6483 - val_acc: 0.6175
+Epoch 5/64
+ 99900/100000 [============================>.] - ETA: 1s - loss: 0.6644 - acc:
+0.5974Epoch 00004: val_loss did not improve
+100000/100000 [==============================] - 1408s - loss: 0.6644 - acc:
+0.5974 - val_loss: 0.6484 - val_acc: 0.6137
+Epoch 6/64
+ 99900/100000 [============================>.] - ETA: 1s - loss: 0.6610 - acc:
+0.6020Epoch 00005: val_loss improved from 0.64828 to 0.64393, saving model to
+/home/sss1/Desktop/projects/DeepInteractions/weights/myDanQ-JASPAR_bestmodel-2016-08-28-14:36:44.hdf5
+100000/100000 [==============================] - 1411s - loss: 0.6610 - acc:
+0.6020 - val_loss: 0.6439 - val_acc: 0.6200
+Epoch 7/64
+ 99900/100000 [============================>.] - ETA: 1s - loss: 0.6573 - acc:
+0.6059Epoch 00006: val_loss improved from 0.64393 to 0.63998, saving model to
+/home/sss1/Desktop/projects/DeepInteractions/weights/myDanQ-JASPAR_bestmodel-2016-08-28-14:36:44.hdf5
+100000/100000 [==============================] - 1403s - loss: 0.6573 - acc:
+0.6059 - val_loss: 0.6400 - val_acc: 0.6226
+Epoch 8/64
+ 99900/100000 [============================>.] - ETA: 1s - loss: 0.6534 - acc:
+0.6126Epoch 00007: val_loss improved from 0.63998 to 0.63597, saving model to
+/home/sss1/Desktop/projects/DeepInteractions/weights/myDanQ-JASPAR_bestmodel-2016-08-28-14:36:44.hdf5
+100000/100000 [==============================] - 1305s - loss: 0.6534 - acc:
+0.6126 - val_loss: 0.6360 - val_acc: 0.6298
+Epoch 9/64
+ 99900/100000 [============================>.] - ETA: 1s - loss: 0.6506 - acc:
+0.6142Epoch 00008: val_loss did not improve
+100000/100000 [==============================] - 1311s - loss: 0.6506 - acc:
+0.6142 - val_loss: 0.6403 - val_acc: 0.6261
+Epoch 10/64
+ 99900/100000 [============================>.] - ETA: 1s - loss: 0.6482 - acc:
+0.6185Epoch 00009: val_loss improved from 0.63597 to 0.63167, saving model to
+/home/sss1/Desktop/projects/DeepInteractions/weights/myDanQ-JASPAR_bestmodel-2016-08-28-14:36:44.hdf5
+100000/100000 [==============================] - 1412s - loss: 0.6482 - acc:
+0.6185 - val_loss: 0.6317 - val_acc: 0.6362
+Epoch 11/64
+ 99900/100000 [============================>.] - ETA: 1s - loss: 0.6449 - acc:
+0.6249Epoch 00010: val_loss improved from 0.63167 to 0.62922, saving model to
+/home/sss1/Desktop/projects/DeepInteractions/weights/myDanQ-JASPAR_bestmodel-2016-08-28-14:36:44.hdf5
+100000/100000 [==============================] - 1423s - loss: 0.6449 - acc:
+0.6248 - val_loss: 0.6292 - val_acc: 0.6391
+Epoch 12/64
+ 99900/100000 [============================>.] - ETA: 1s - loss: 0.6425 - acc:
+0.6279Epoch 00011: val_loss improved from 0.62922 to 0.62158, saving model to
+/home/sss1/Desktop/projects/DeepInteractions/weights/myDanQ-JASPAR_bestmodel-2016-08-28-14:36:44.hdf5
+100000/100000 [==============================] - 1525s - loss: 0.6424 - acc:
+0.6280 - val_loss: 0.6216 - val_acc: 0.6527
+Epoch 13/64
+ 99900/100000 [============================>.] - ETA: 1s - loss: 0.6408 - acc:
+0.6286Epoch 00012: val_loss did not improve
+100000/100000 [==============================] - 1526s - loss: 0.6408 - acc:
+0.6286 - val_loss: 0.6290 - val_acc: 0.6405
+Epoch 14/64
+ 99900/100000 [============================>.] - ETA: 1s - loss: 0.6393 - acc:
+0.6307Epoch 00013: val_loss did not improve
+100000/100000 [==============================] - 1527s - loss: 0.6393 - acc:
+0.6306 - val_loss: 0.6270 - val_acc: 0.6458
+Epoch 15/64
+ 99900/100000 [============================>.] - ETA: 1s - loss: 0.6355 - acc:
+0.6360Epoch 00014: val_loss improved from 0.62158 to 0.61771, saving model to
+/home/sss1/Desktop/projects/DeepInteractions/weights/myDanQ-JASPAR_bestmodel-2016-08-28-14:36:44.hdf5
+100000/100000 [==============================] - 1526s - loss: 0.6355 - acc:
+0.6360 - val_loss: 0.6177 - val_acc: 0.6541
+Epoch 16/64
+ 99900/100000 [============================>.] - ETA: 1s - loss: 0.6342 - acc:
+0.6383Epoch 00015: val_loss did not improve
+100000/100000 [==============================] - 1524s - loss: 0.6343 - acc:
+0.6381 - val_loss: 0.6190 - val_acc: 0.6548
+Epoch 17/64
+ 99900/100000 [============================>.] - ETA: 1s - loss: 0.6317 - acc:
+0.6409Epoch 00016: val_loss improved from 0.61771 to 0.61728, saving model to
+/home/sss1/Desktop/projects/DeepInteractions/weights/myDanQ-JASPAR_bestmodel-2016-08-28-14:36:44.hdf5
+100000/100000 [==============================] - 1528s - loss: 0.6317 - acc:
+0.6408 - val_loss: 0.6173 - val_acc: 0.6575
+Epoch 18/64
+ 99900/100000 [============================>.] - ETA: 1s - loss: 0.6300 - acc:
+0.6432Epoch 00017: val_loss improved from 0.61728 to 0.61157, saving model to
+/home/sss1/Desktop/projects/DeepInteractions/weights/myDanQ-JASPAR_bestmodel-2016-08-28-14:36:44.hdf5
+100000/100000 [==============================] - 1525s - loss: 0.6299 - acc:
+0.6433 - val_loss: 0.6116 - val_acc: 0.6604
+Epoch 19/64
+ 99900/100000 [============================>.] - ETA: 1s - loss: 0.6279 - acc:
+0.6449Epoch 00018: val_loss improved from 0.61157 to 0.60673, saving model to
+/home/sss1/Desktop/projects/DeepInteractions/weights/myDanQ-JASPAR_bestmodel-2016-08-28-14:36:44.hdf5
+100000/100000 [==============================] - 1526s - loss: 0.6279 - acc:
+0.6450 - val_loss: 0.6067 - val_acc: 0.6695
+Epoch 20/64
+ 99900/100000 [============================>.] - ETA: 1s - loss: 0.6262 - acc:
+0.6468Epoch 00019: val_loss did not improve
+100000/100000 [==============================] - 1530s - loss: 0.6262 - acc:
+0.6468 - val_loss: 0.6094 - val_acc: 0.6646
+Epoch 21/64
+ 99900/100000 [============================>.] - ETA: 1s - loss: 0.6252 - acc:
+0.6468Epoch 00020: val_loss did not improve
+100000/100000 [==============================] - 1527s - loss: 0.6252 - acc:
+0.6469 - val_loss: 0.6075 - val_acc: 0.6677
+Epoch 22/64
+ 99900/100000 [============================>.] - ETA: 1s - loss: 0.6243 - acc:
+0.6490Epoch 00021: val_loss improved from 0.60673 to 0.60126, saving model to
+/home/sss1/Desktop/projects/DeepInteractions/weights/myDanQ-JASPAR_bestmodel-2016-08-28-14:36:44.hdf5
+100000/100000 [==============================] - 1527s - loss: 0.6243 - acc:
+0.6490 - val_loss: 0.6013 - val_acc: 0.6758
+Epoch 23/64
+ 99900/100000 [============================>.] - ETA: 1s - loss: 0.6209 - acc:
+0.6519Epoch 00022: val_loss improved from 0.60126 to 0.59988, saving model to
+/home/sss1/Desktop/projects/DeepInteractions/weights/myDanQ-JASPAR_bestmodel-2016-08-28-14:36:44.hdf5
+100000/100000 [==============================] - 1531s - loss: 0.6209 - acc:
+0.6519 - val_loss: 0.5999 - val_acc: 0.6746
+Epoch 24/64
+ 99900/100000 [============================>.] - ETA: 0s - loss: 0.6196 - acc:
+0.6540Epoch 00023: val_loss did not improve
+100000/100000 [==============================] - 1001s - loss: 0.6195 - acc:
+0.6540 - val_loss: 0.6023 - val_acc: 0.6691
+Epoch 25/64
+ 99900/100000 [============================>.] - ETA: 0s - loss: 0.6182 - acc:
+0.6548Epoch 00024: val_loss improved from 0.59988 to 0.59237, saving model to
+/home/sss1/Desktop/projects/DeepInteractions/weights/myDanQ-JASPAR_bestmodel-2016-08-28-14:36:44.hdf5
+100000/100000 [==============================] - 921s - loss: 0.6182 - acc:
+0.6548 - val_loss: 0.5924 - val_acc: 0.6852
+Epoch 26/64
+ 99900/100000 [============================>.] - ETA: 0s - loss: 0.6172 - acc:
+0.6586Epoch 00025: val_loss did not improve
+100000/100000 [==============================] - 920s - loss: 0.6172 - acc:
+0.6587 - val_loss: 0.6071 - val_acc: 0.6647
+Epoch 27/64
+ 99900/100000 [============================>.] - ETA: 0s - loss: 0.6130 - acc:
+0.6615Epoch 00026: val_loss improved from 0.59237 to 0.59008, saving model to
+/home/sss1/Desktop/projects/DeepInteractions/weights/myDanQ-JASPAR_bestmodel-2016-08-28-14:36:44.hdf5
+100000/100000 [==============================] - 920s - loss: 0.6130 - acc:
+0.6615 - val_loss: 0.5901 - val_acc: 0.6852
+Epoch 28/64
+ 99900/100000 [============================>.] - ETA: 0s - loss: 0.6143 - acc:
+0.6601Epoch 00027: val_loss did not improve
+100000/100000 [==============================] - 919s - loss: 0.6143 - acc:
+0.6602 - val_loss: 0.5947 - val_acc: 0.6778
+Epoch 29/64
+ 99900/100000 [============================>.] - ETA: 0s - loss: 0.6109 - acc:
+0.6628Epoch 00028: val_loss did not improve
+100000/100000 [==============================] - 919s - loss: 0.6110 - acc:
+0.6627 - val_loss: 0.5903 - val_acc: 0.6829
+Epoch 30/64
+ 99900/100000 [============================>.] - ETA: 0s - loss: 0.6090 - acc:
+0.6639Epoch 00029: val_loss did not improve
+100000/100000 [==============================] - 920s - loss: 0.6090 - acc:
+0.6640 - val_loss: 0.5904 - val_acc: 0.6835
+Epoch 31/64
+ 99900/100000 [============================>.] - ETA: 0s - loss: 0.6094 - acc:
+0.6667Epoch 00030: val_loss did not improve
+100000/100000 [==============================] - 918s - loss: 0.6093 - acc:
+0.6668 - val_loss: 0.6016 - val_acc: 0.6717
+Epoch 32/64
+ 99900/100000 [============================>.] - ETA: 0s - loss: 0.6073 - acc:
+0.6677Epoch 00031: val_loss did not improve
+100000/100000 [==============================] - 918s - loss: 0.6073 - acc:
+0.6678 - val_loss: 0.5947 - val_acc: 0.6743
+Epoch 33/64
+ 99900/100000 [============================>.] - ETA: 0s - loss: 0.6049 - acc:
+0.6694Epoch 00032: val_loss did not improve
+100000/100000 [==============================] - 918s - loss: 0.6049 - acc:
+0.6694 - val_loss: 0.5999 - val_acc: 0.6736
+Epoch 34/64
+ 99900/100000 [============================>.] - ETA: 0s - loss: 0.6037 - acc:
+0.6717Epoch 00033: val_loss improved from 0.59008 to 0.58974, saving model to
+/home/sss1/Desktop/projects/DeepInteractions/weights/myDanQ-JASPAR_bestmodel-2016-08-28-14:36:44.hdf5
+100000/100000 [==============================] - 921s - loss: 0.6037 - acc:
+0.6716 - val_loss: 0.5897 - val_acc: 0.6803
+Epoch 35/64
+ 99900/100000 [============================>.] - ETA: 0s - loss: 0.6018 - acc:
+0.6710Epoch 00034: val_loss improved from 0.58974 to 0.58643, saving model to
+/home/sss1/Desktop/projects/DeepInteractions/weights/myDanQ-JASPAR_bestmodel-2016-08-28-14:36:44.hdf5
+100000/100000 [==============================] - 918s - loss: 0.6018 - acc:
+0.6710 - val_loss: 0.5864 - val_acc: 0.6851
+Epoch 36/64
+ 99900/100000 [============================>.] - ETA: 0s - loss: 0.6014 - acc:
+0.6726Epoch 00035: val_loss did not improve
+100000/100000 [==============================] - 920s - loss: 0.6014 - acc:
+0.6726 - val_loss: 0.5967 - val_acc: 0.6703
+Epoch 37/64
+ 99900/100000 [============================>.] - ETA: 0s - loss: 0.5994 - acc:
+0.6739Epoch 00036: val_loss improved from 0.58643 to 0.58420, saving model to
+/home/sss1/Desktop/projects/DeepInteractions/weights/myDanQ-JASPAR_bestmodel-2016-08-28-14:36:44.hdf5
+100000/100000 [==============================] - 921s - loss: 0.5995 - acc:
+0.6740 - val_loss: 0.5842 - val_acc: 0.6891
+Epoch 38/64
+ 99900/100000 [============================>.] - ETA: 0s - loss: 0.5968 - acc:
+0.6771Epoch 00037: val_loss improved from 0.58420 to 0.58023, saving model to
+/home/sss1/Desktop/projects/DeepInteractions/weights/myDanQ-JASPAR_bestmodel-2016-08-28-14:36:44.hdf5
+100000/100000 [==============================] - 920s - loss: 0.5968 - acc:
+0.6771 - val_loss: 0.5802 - val_acc: 0.6924
+Epoch 39/64
+ 99900/100000 [============================>.] - ETA: 0s - loss: 0.5970 - acc:
+0.6769Epoch 00038: val_loss improved from 0.58023 to 0.57601, saving model to
+/home/sss1/Desktop/projects/DeepInteractions/weights/myDanQ-JASPAR_bestmodel-2016-08-28-14:36:44.hdf5
+100000/100000 [==============================] - 920s - loss: 0.5970 - acc:
+0.6769 - val_loss: 0.5760 - val_acc: 0.6960
+Epoch 40/64
+ 99900/100000 [============================>.] - ETA: 0s - loss: 0.5955 - acc:
+0.6781Epoch 00039: val_loss did not improve
+100000/100000 [==============================] - 919s - loss: 0.5955 - acc:
+0.6782 - val_loss: 0.5762 - val_acc: 0.6954
+Epoch 41/64
+ 99900/100000 [============================>.] - ETA: 0s - loss: 0.5954 - acc:
+0.6778Epoch 00040: val_loss improved from 0.57601 to 0.57087, saving model to
+/home/sss1/Desktop/projects/DeepInteractions/weights/myDanQ-JASPAR_bestmodel-2016-08-28-14:36:44.hdf5
+100000/100000 [==============================] - 920s - loss: 0.5954 - acc:
+0.6777 - val_loss: 0.5709 - val_acc: 0.6996
+Epoch 42/64
+ 99900/100000 [============================>.] - ETA: 0s - loss: 0.5920 - acc:
+0.6818Epoch 00041: val_loss did not improve
+100000/100000 [==============================] - 919s - loss: 0.5919 - acc:
+0.6818 - val_loss: 0.5871 - val_acc: 0.6832
+Epoch 43/64
+ 99900/100000 [============================>.] - ETA: 0s - loss: 0.5911 - acc:
+0.6841Epoch 00042: val_loss did not improve
+100000/100000 [==============================] - 919s - loss: 0.5911 - acc:
+0.6841 - val_loss: 0.5811 - val_acc: 0.6917
+Epoch 44/64
+ 99900/100000 [============================>.] - ETA: 0s - loss: 0.5919 - acc:
+0.6818Epoch 00043: val_loss did not improve
+100000/100000 [==============================] - 919s - loss: 0.5919 - acc:
+0.6818 - val_loss: 0.5800 - val_acc: 0.6911
+Epoch 45/64
+ 99900/100000 [============================>.] - ETA: 0s - loss: 0.5893 - acc:
+0.6847Epoch 00044: val_loss did not improve
+100000/100000 [==============================] - 919s - loss: 0.5893 - acc:
+0.6847 - val_loss: 0.5730 - val_acc: 0.7001
+Epoch 46/64
+ 99900/100000 [============================>.] - ETA: 0s - loss: 0.5876 - acc:
+0.6859Epoch 00045: val_loss did not improve
+100000/100000 [==============================] - 919s - loss: 0.5876 - acc:
+0.6859 - val_loss: 0.5756 - val_acc: 0.6946
+Epoch 47/64
+ 99900/100000 [============================>.] - ETA: 0s - loss: 0.5881 - acc:
+0.6848Epoch 00046: val_loss did not improve
+100000/100000 [==============================] - 919s - loss: 0.5881 - acc:
+0.6848 - val_loss: 0.5736 - val_acc: 0.6981
+Epoch 48/64
+ 99900/100000 [============================>.] - ETA: 0s - loss: 0.5872 - acc:
+0.6882Epoch 00047: val_loss improved from 0.57087 to 0.56817, saving model to
+/home/sss1/Desktop/projects/DeepInteractions/weights/myDanQ-JASPAR_bestmodel-2016-08-28-14:36:44.hdf5
+100000/100000 [==============================] - 920s - loss: 0.5871 - acc:
+0.6884 - val_loss: 0.5682 - val_acc: 0.7052
+Epoch 49/64
+ 99900/100000 [============================>.] - ETA: 0s - loss: 0.5854 - acc:
+0.6879Epoch 00048: val_loss did not improve
+100000/100000 [==============================] - 919s - loss: 0.5854 - acc:
+0.6879 - val_loss: 0.5766 - val_acc: 0.6950
+Epoch 50/64
+ 99900/100000 [============================>.] - ETA: 0s - loss: 0.5828 - acc:
+0.6908Epoch 00049: val_loss did not improve
+100000/100000 [==============================] - 919s - loss: 0.5828 - acc:
+0.6908 - val_loss: 0.5704 - val_acc: 0.7016
+Epoch 51/64
+ 99900/100000 [============================>.] - ETA: 0s - loss: 0.5819 - acc:
+0.6910Epoch 00050: val_loss improved from 0.56817 to 0.55599, saving model to
+/home/sss1/Desktop/projects/DeepInteractions/weights/myDanQ-JASPAR_bestmodel-2016-08-28-14:36:44.hdf5
+100000/100000 [==============================] - 920s - loss: 0.5819 - acc:
+0.6910 - val_loss: 0.5560 - val_acc: 0.7161
+Epoch 52/64
+ 99900/100000 [============================>.] - ETA: 0s - loss: 0.5807 - acc:
+0.6927Epoch 00051: val_loss did not improve
+100000/100000 [==============================] - 920s - loss: 0.5807 - acc:
+0.6927 - val_loss: 0.5570 - val_acc: 0.7145
+Epoch 53/64
+ 99900/100000 [============================>.] - ETA: 0s - loss: 0.5796 - acc:
+0.6930Epoch 00052: val_loss did not improve
+100000/100000 [==============================] - 919s - loss: 0.5796 - acc:
+0.6930 - val_loss: 0.5688 - val_acc: 0.7013
+Epoch 54/64
+ 99900/100000 [============================>.] - ETA: 0s - loss: 0.5797 - acc:
+0.6928Epoch 00053: val_loss did not improve
+100000/100000 [==============================] - 919s - loss: 0.5797 - acc:
+0.6928 - val_loss: 0.5604 - val_acc: 0.7112
+Epoch 55/64
+ 99900/100000 [============================>.] - ETA: 0s - loss: 0.5781 - acc:
+0.6960Epoch 00054: val_loss did not improve
+100000/100000 [==============================] - 920s - loss: 0.5782 - acc:
+0.6960 - val_loss: 0.5621 - val_acc: 0.7097
+Epoch 56/64
+ 99900/100000 [============================>.] - ETA: 0s - loss: 0.5770 - acc:
+0.6951Epoch 00055: val_loss did not improve
+100000/100000 [==============================] - 920s - loss: 0.5770 - acc:
+0.6951 - val_loss: 0.5587 - val_acc: 0.7100
+Epoch 57/64
+ 99900/100000 [============================>.] - ETA: 0s - loss: 0.5748 - acc:
+0.6964Epoch 00056: val_loss did not improve
+100000/100000 [==============================] - 918s - loss: 0.5749 - acc:
+0.6964 - val_loss: 0.5600 - val_acc: 0.7122
+Epoch 58/64
+ 99900/100000 [============================>.] - ETA: 0s - loss: 0.5750 - acc:
+0.6976Epoch 00057: val_loss did not improve
+100000/100000 [==============================] - 917s - loss: 0.5750 - acc:
+0.6976 - val_loss: 0.5611 - val_acc: 0.7116
+Epoch 59/64
+ 99900/100000 [============================>.] - ETA: 0s - loss: 0.5737 - acc:
+0.6985Epoch 00058: val_loss improved from 0.55599 to 0.55367, saving model to
+/home/sss1/Desktop/projects/DeepInteractions/weights/myDanQ-JASPAR_bestmodel-2016-08-28-14:36:44.hdf5
+100000/100000 [==============================] - 918s - loss: 0.5737 - acc:
+0.6984 - val_loss: 0.5537 - val_acc: 0.7177
+Epoch 60/64
+ 99900/100000 [============================>.] - ETA: 0s - loss: 0.5708 - acc:
+0.7018Epoch 00059: val_loss did not improve
+100000/100000 [==============================] - 916s - loss: 0.5708 - acc:
+0.7018 - val_loss: 0.5575 - val_acc: 0.7122
+Epoch 61/64
+ 99900/100000 [============================>.] - ETA: 0s - loss: 0.5715 - acc:
+0.7008Epoch 00060: val_loss did not improve
+100000/100000 [==============================] - 917s - loss: 0.5716 - acc:
+0.7007 - val_loss: 0.5662 - val_acc: 0.7020
+Epoch 62/64
+ 99900/100000 [============================>.] - ETA: 0s - loss: 0.5694 - acc:
+0.7028Epoch 00061: val_loss did not improve
+100000/100000 [==============================] - 916s - loss: 0.5694 - acc:
+0.7028 - val_loss: 0.5557 - val_acc: 0.7153
+Epoch 63/64
+ 99900/100000 [============================>.] - ETA: 0s - loss: 0.5703 - acc:
+0.7017Epoch 00062: val_loss did not improve
+100000/100000 [==============================] - 916s - loss: 0.5703 - acc:
+0.7017 - val_loss: 0.5540 - val_acc: 0.7140
+Epoch 64/64
+ 99900/100000 [============================>.] - ETA: 0s - loss: 0.5705 - acc:
+0.7041Epoch 00063: val_loss improved from 0.55367 to 0.54425, saving model to
+/home/sss1/Desktop/projects/DeepInteractions/weights/myDanQ-JASPAR_bestmodel-2016-08-28-14:36:44.hdf5
+100000/100000 [==============================] - 917s - loss: 0.5705 - acc:
+0.7040 - val_loss: 0.5442 - val_acc: 0.7243
+
