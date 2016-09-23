@@ -18,7 +18,7 @@ from keras.models import Sequential
 from seq2seq.layers.bidirectional import Bidirectional
 
 # training parameters
-num_epochs = 5
+num_epochs = 80
 num_epochs_frozen = 16
 batch_size = 100
 training_frac = 0.9 # use 90% of data for training, 10% for testing
