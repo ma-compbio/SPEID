@@ -72,7 +72,7 @@ def plot_live(conf_mat_callback):
     precisions_plot = plt.plot(range(conf_mat_callback.epoch), conf_mat_callback.precisions, label = 'Precision')
     recalls_plot = plt.plot(range(conf_mat_callback.epoch), conf_mat_callback.recalls, label = 'Recall')
     f1_scores_plot = plt.plot(range(conf_mat_callback.epoch), conf_mat_callback.f1_scores, label = 'F1 score')
-    losses_plot = plt.plot(range(conf_mat_callback.epoch), conf_mat_callback.losses / max(conf_mat_callback.losses), label = 'Loss')
+    losses_plot = plt.plot(range(conf_mat_callback.epoch), conf_mat_callback.losses / max(conf_mat_callback.losses), label = 'Training Loss')
     accs_plot = plt.plot(range(conf_mat_callback.epoch), conf_mat_callback.accs, label = 'Accuracy')
     plt.legend(bbox_to_anchor = (0, 1), loc = 2, borderaxespad = 0.)
     plt.ylim([0, 1])
