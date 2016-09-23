@@ -50,15 +50,18 @@ def print_live(conf_mat_callback, y_val, val_predict, logs):
     recall = conf_mat[1, 1] / conf_mat[1, :].sum()
     f1_score = 2 * precision * recall / (precision + recall)
 
+    acc = (conf_mat[0, 0] + conf_mat[1, 1]) / np.sum(conf_mat)
+
     conf_mat_callback.precisions.append(precision)
     conf_mat_callback.recalls.append(recall)
     conf_mat_callback.f1_scores.append(f1_score)
     conf_mat_callback.losses.append(logs.get('loss'))
-    conf_mat_callback.accs.append(logs.get('acc'))
+    conf_mat_callback.accs.append(acc)
     print '\nConfusion matrix:\n' + str(conf_mat) + '\n'
     print 'Precision: ' + str(precision) + \
         '  Recall: ' + str(recall) + \
-        '  F1: ' + str(f1_score)
+        '  F1: ' + str(f1_score) + \
+        '  Accuracy: ' + str(acc)
     print 'Predicted fractions: ' + str(val_predict.mean())
     print 'Actual fractions: ' + str(y_val.mean()) + '\n'
 
