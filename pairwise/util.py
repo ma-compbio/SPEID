@@ -1,6 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from sklearn.metrics import confusion_matrix
+from sklearn.metrics import confusion_matrix, log_loss
 
 def initialize_with_JASPAR(enhancer_conv_layer, promoter_conv_layer):
     JASPAR_motifs = list(np.load('/home/sss1/Desktop/projects/DeepInteractions/JASPAR_CORE_2016_vertebrates.npy'))
@@ -52,10 +52,12 @@ def print_live(conf_mat_callback, y_val, val_predict, logs):
 
     acc = (conf_mat[0, 0] + conf_mat[1, 1]) / np.sum(conf_mat)
 
+    loss = log_loss(y_val, val_predict)
+
     conf_mat_callback.precisions.append(precision)
     conf_mat_callback.recalls.append(recall)
     conf_mat_callback.f1_scores.append(f1_score)
-    conf_mat_callback.losses.append(logs.get('loss'))
+    conf_mat_callback.losses.append(loss)
     conf_mat_callback.accs.append(acc)
     print '\nConfusion matrix:\n' + str(conf_mat) + '\n'
     print 'Precision: ' + str(precision) + \
@@ -72,7 +74,7 @@ def plot_live(conf_mat_callback):
     precisions_plot = plt.plot(range(conf_mat_callback.epoch), conf_mat_callback.precisions, label = 'Precision')
     recalls_plot = plt.plot(range(conf_mat_callback.epoch), conf_mat_callback.recalls, label = 'Recall')
     f1_scores_plot = plt.plot(range(conf_mat_callback.epoch), conf_mat_callback.f1_scores, label = 'F1 score')
-    losses_plot = plt.plot(range(conf_mat_callback.epoch), conf_mat_callback.losses / max(conf_mat_callback.losses), label = 'Training Loss')
+    losses_plot = plt.plot(range(conf_mat_callback.epoch), conf_mat_callback.losses / max(conf_mat_callback.losses), label = 'Loss')
     accs_plot = plt.plot(range(conf_mat_callback.epoch), conf_mat_callback.accs, label = 'Accuracy')
     plt.legend(bbox_to_anchor = (0, 1), loc = 2, borderaxespad = 0.)
     plt.ylim([0, 1])
