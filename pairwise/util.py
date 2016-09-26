@@ -53,17 +53,20 @@ def print_live(conf_mat_callback, y_val, val_predict, logs):
     acc = (conf_mat[0, 0] + conf_mat[1, 1]) / np.sum(conf_mat)
 
     loss = log_loss(y_val, val_predict)
+    training_loss = logs.get('loss')
 
     conf_mat_callback.precisions.append(precision)
     conf_mat_callback.recalls.append(recall)
     conf_mat_callback.f1_scores.append(f1_score)
     conf_mat_callback.losses.append(loss)
+    conf_mat_callback.training_losses.append(training_loss)
     conf_mat_callback.accs.append(acc)
     print '\nConfusion matrix:\n' + str(conf_mat) + '\n'
     print 'Precision: ' + str(precision) + \
         '  Recall: ' + str(recall) + \
         '  F1: ' + str(f1_score) + \
-        '  Accuracy: ' + str(acc)
+        '  Accuracy: ' + str(acc) + \
+        '  Log Loss: ' + str(loss)
     print 'Predicted fractions: ' + str(val_predict.mean())
     print 'Actual fractions: ' + str(y_val.mean()) + '\n'
 
@@ -74,8 +77,9 @@ def plot_live(conf_mat_callback):
     precisions_plot = plt.plot(range(conf_mat_callback.epoch), conf_mat_callback.precisions, label = 'Precision')
     recalls_plot = plt.plot(range(conf_mat_callback.epoch), conf_mat_callback.recalls, label = 'Recall')
     f1_scores_plot = plt.plot(range(conf_mat_callback.epoch), conf_mat_callback.f1_scores, label = 'F1 score')
-    losses_plot = plt.plot(range(conf_mat_callback.epoch), conf_mat_callback.losses / max(conf_mat_callback.losses), label = 'Loss')
     accs_plot = plt.plot(range(conf_mat_callback.epoch), conf_mat_callback.accs, label = 'Accuracy')
+    losses_plot = plt.plot(range(conf_mat_callback.epoch), conf_mat_callback.losses / max(conf_mat_callback.losses), label = 'Loss')
+    training_losses_plot = plt.plot(range(conf_mat_callback.epoch), conf_mat_callback.training_losses / max(conf_mat_callback.training_losses), label = 'Training Loss')
     plt.legend(bbox_to_anchor = (0, 1), loc = 2, borderaxespad = 0.)
     plt.ylim([0, 1])
     plt.pause(.001)
