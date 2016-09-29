@@ -18,10 +18,10 @@ from keras.models import Sequential
 from seq2seq.layers.bidirectional import Bidirectional
 
 # training parameters
-num_epochs = 80
-num_epochs_frozen = 16
+num_epochs = 60
+num_epochs_frozen = 60
 batch_size = 100
-training_frac = 0.9 # use 90% of data for training, 10% for testing
+training_frac = 0.9 # use 90% of data for training, 10% for testing/validation
 t = datetime.now().strftime('%Y-%m-%d-%H:%M:%S')
 checkpoint_path = "/home/sss1/Desktop/projects/DeepInteractions/weights/myDanQ-JASPAR_bestmodel-" + t + ".hdf5"
 
@@ -31,7 +31,7 @@ filter_length = 40 # Length of each kernel
 LSTM_out_dim = 100 # Output direction of ONE DIRECTION of LSTM; used to be 512
 
 # Load data and split into training and validation sets
-cell_line = 'K562'
+cell_line = 'IMR90'
 data_path = '/home/sss1/Desktop/projects/DeepInteractions/data/uniform_len/' + cell_line + '/' + cell_line + '_ep_split.h5'
 print 'Loading data from ' + data_path
 X_enhancer_train, X_promoter_train, y_train = ld.load_hdf5_ep_split_aug(data_path)
@@ -92,16 +92,18 @@ LR_classifier_layer = Dense(output_dim = 1)
 # Build main (merged) branch
 model = Sequential()
 model.add(merge_layer)
+model.add(BatchNormalization())
 model.add(Dropout(0.25))
 model.add(biLSTM_layer)
+model.add(BatchNormalization())
 model.add(Dropout(0.5))
 model.add(Flatten())
 model.add(dense_layer)
-# model.add(BatchNormalization())
+model.add(BatchNormalization())
 model.add(Activation("relu"))
-model.add(Dropout(0.25))
+model.add(Dropout(0.5))
 model.add(LR_classifier_layer)
-# model.add(BatchNormalization())
+model.add(BatchNormalization())
 model.add(Activation("sigmoid"))
 
 # Read in and initialize convolutional layers with motifs from JASPAR
@@ -125,6 +127,7 @@ class ConfusionMatrix(Callback):
         self.recalls = []
         self.f1_scores = []
         self.losses = []
+        self.training_losses = []
         self.accs = []
         plt.ion()
 
@@ -155,18 +158,19 @@ model.fit([X_enhancer_train, X_promoter_train],
             callbacks=[confusionMatrix]
             )
 
-plotName = 'EP_' + t + '.png'
+plotName = cell_line + '_' + t + '.png'
 plt.savefig(plotName)
 print 'Saved loss plot to ' + plotName
 
 ### BEGIN CODE FOR RETRAINING MODEL ON IMBALANCED DATA ###
+print '\n\n\n\nBEGINNING RETRAINING PHASE.\n\n\n\n'
+
 # Freeze all by the dense layers of the network
 enhancer_conv_layer.trainable = False
 enhancer_max_pool_layer.trainable = False
 promoter_conv_layer.trainable = False
 promoter_max_pool_layer.trainable = False
 biLSTM_layer.trainable = False
-
 
 print 'Compiling retraining model...'
 model.compile(loss = 'binary_crossentropy',
@@ -194,6 +198,6 @@ model.fit([X_enhancer_train, X_promoter_train],
             class_weight = {0 : neg_weight, 1 : pos_weight} # increase weight of positive samples, to counter class imbalance
             )
 
-plotName = 'EP_frozen_' + t + '.png'
+plotName = cell_line + '_frozen_' + t + '.png'
 plt.savefig(plotName)
 print 'Saved loss plot to ' + plotName

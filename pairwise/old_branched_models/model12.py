@@ -71,9 +71,9 @@ model.add(Merge([enhancer_branch, promoter_branch],
 model.add(Dropout(0.25))
 
 # Bidirectional LSTM to extract combinations of motifs
-model.add(Bidirectional(LSTM(input_dim=n_kernels,
-                                    output_dim=LSTM_out_dim,
-                                    return_sequences=True)))
+model.add(Bidirectional(LSTM(input_dim = n_kernels,
+                                    output_dim = LSTM_out_dim,
+                                    return_sequences = True)))
 model.add(Dropout(0.5))
 
 # Dense layer to allow nonlinearities
