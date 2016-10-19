@@ -1,4 +1,5 @@
 import numpy as np
+import math
 import matplotlib.pyplot as plt
 import build_model
 from scipy.cluster import vq
@@ -19,22 +20,28 @@ promoter_conv_weights = np.squeeze(model.layers[0].layers[1].layers[0].get_weigh
 
 # These each have shape (40, 4, 1024)
 
-# min correction: add min to each row and then normalize to sum to 1
+# Min correction: add min to each row and then normalize to sum to 1
+# Non-negative correction: Zero all negative entries and normalize to sum to 1
 print 'MEME version 4\n'
 print 'ALPHABET= ACGT\n'
-print 'strands: + -'
+print 'strands: + -\n'
+print 'Background letter frequencies (from uniform background):'
+print 'A 0.25000 C 0.25000 G 0.25000 T 0.25000\n'
 
 def print_motifs(weight_tensor, EP):
   kernel_length, _, num_kernels = np.shape(weight_tensor)
-  for kernel_idx in range(num_kernels):
+  motif_spec = 'letter-probability matrix: alength= 4 w= ' + str(kernel_length)
+  for kernel_idx in range(2):#num_kernels):
     print '\nMOTIF ' + cell_line + '-' + EP + ("%04d" % kernel_idx)
+    print motif_spec
   
     for position in range(kernel_length):
       row = weight_tensor[position, :, kernel_idx]
-      row -= row.min()
+      row = np.maximum(row, 0)# -= row.min()
       row /= row.sum()
-      print "%.6f  %.6f  %.6f  %.6f" % tuple(row)
-
+      if np.isnan(row).any(): # if all weights in row are negative, weight the bases uniformly
+        row = [0.25, 0.25, 0.25, 0.25]
+      print "%.6f  %.6f  %.6f  %.6f" % (row[0], row[2], row[1], row[3])
 
 print_motifs(enhancer_conv_weights, 'E')
 print_motifs(promoter_conv_weights, 'P')
