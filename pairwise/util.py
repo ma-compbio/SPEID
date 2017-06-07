@@ -1,6 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from sklearn.metrics import confusion_matrix, log_loss
+from sklearn.metrics import confusion_matrix, log_loss, roc_curve, auc, precision_recall_curve, average_precision_score
 
 def initialize_with_JASPAR(enhancer_conv_layer, promoter_conv_layer):
     JASPAR_motifs = list(np.load('/home/sss1/Desktop/projects/DeepInteractions/JASPAR_CORE_2016_vertebrates.npy'))
@@ -97,3 +97,19 @@ def subsample_imbalanced(X_enhancer, X_promoter, y, positive_subsample_frac):
     to_keep = (np.random(n) < positive_subsample_frac) or (y == 1)
 
     return X_enhancer[to_keep, :], X_promoter[to_keep, :], y[to_keep]
+
+
+def compute_AUPR(y, y_score):
+  # print 'Computing Precision-Recall curve...'
+  precision, recall, _ = precision_recall_curve(y, y_score)
+  average_precision = average_precision_score(y, y_score)
+
+def plot_PR_curve(y, y_score):
+  # print 'Computing Precision-Recall curve...'
+  precision, recall, _ = precision_recall_curve(y, y_score)
+  return average_precision_score(y, y_score)
+
+def plot_ROC_curve(y, y_score):
+  # print 'Computing ROC curve...'
+  fpr, tpr, thresholds = roc_curve(y, y_score)
+  return auc(fpr, tpr)
