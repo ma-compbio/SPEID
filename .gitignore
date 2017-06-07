@@ -1,5 +1,7 @@
 # Old stuff
 old/*
+pairwise/old_models/*
+
 
 # Data files
 data/*
