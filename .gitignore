@@ -1,3 +1,6 @@
+# Old stuff
+old/*
+
 # Data files
 data/*
 *.mat
