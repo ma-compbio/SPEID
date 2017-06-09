@@ -1,7 +1,14 @@
 # Old stuff
 old/*
+feature_importances/SPEID/old/*
 pairwise/old_models/*
+cluster_installation_steps.sh
+pairwise/FIMO
+pairwise/motifs
+build_smaller_model.py
 
+# Dependencies
+dependencies/
 
 # Data files
 data/*
