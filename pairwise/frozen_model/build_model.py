@@ -73,7 +73,6 @@ LR_classifier_layer = Dense(output_dim = 1)
 
 def build_model(use_JASPAR = True):
 
-  ### BEGIN CODE FOR TRAINING MODEL ON BALANCED DATA ###
   # A single downstream model merges the enhancer and promoter branches
   # Build main (merged) branch
   # Using batch normalization seems to inhibit retraining, probably because the
@@ -103,11 +102,11 @@ def build_model(use_JASPAR = True):
 def build_frozen_model():
 
   # Freeze all by the dense layers of the network
-  # enhancer_conv_layer.trainable = False
-  # enhancer_max_pool_layer.trainable = False
-  # promoter_conv_layer.trainable = False
-  # promoter_max_pool_layer.trainable = False
-  # biLSTM_layer.trainable = False
+  enhancer_conv_layer.trainable = False
+  enhancer_max_pool_layer.trainable = False
+  promoter_conv_layer.trainable = False
+  promoter_max_pool_layer.trainable = False
+  biLSTM_layer.trainable = False
 
   # TODO: Figure out how to remove layers after loading weights
 

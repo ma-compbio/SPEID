@@ -35,7 +35,8 @@ checkpoint_path = "/home/sss1/Desktop/projects/DeepInteractions/weights/" + cell
 opt = Adam(lr = 1e-5) # opt = RMSprop(lr = 1e-6)
 
 # # Load data and split into training and validation sets
-data_path = '/home/sss1/Desktop/projects/DeepInteractions/data/uniform_len/' + cell_line + '/' + cell_line + '_ep_split.h5'
+data_path =
+'/home/sss1/Desktop/projects/DeepInteractions/data/uniform_len/original/all_data.h5'
 print 'Loading data from ' + data_path
 # TODO: Resample 10 times and do cross-validation
 X_enhancer_train, X_promoter_train, y_train = ld.load_hdf5_ep_split_aug(data_path)
