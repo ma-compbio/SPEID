@@ -1,6 +1,10 @@
 # SPEID
 
-SPEID is a deep neural network designed for predicting gene interactions directly from sequence data, as described in http://biorxiv.org/content/early/2016/11/02/085241. SPEID is implemented in Python, based on the Theano and Keras libraries.
+<h1>Overview</h1>
+
+SPEID is a deep neural network (implemented in Python, based on the Theano and Keras libraries) designed for predicting enhancer-promoter interactions directly from sequence data, as described in 
+
+Singh, Shashank, et al. "Predicting Enhancer-Promoter Interaction from Genomic Sequence with Deep Neural Networks." bioRxiv (2016): 085241. http://biorxiv.org/content/early/2016/11/02/085241.
 
 <h1>Data</h1>
 The main data requirement for training SPEID is DNA sequences of the positive and negative enhancer promoter pairs in the desired cell type. For convenient reproducability in the cell lines we studied (GM12878, HeLa-S3, HUVEC, IMR90, K562, and NHEK) we have packaged these data together in a single HDF5 file available at TODO.
