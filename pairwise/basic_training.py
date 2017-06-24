@@ -56,11 +56,7 @@ for cell_line in cell_lines:
           self.training_losses = []
           self.training_accs = []
           self.accs = []
-          # plt.ion()
-  
-  #     def on_batch_end(self, batch, logs = {}):
-  #         self.training_losses.append(logs.get('loss'))
-  #         self.training_accs.append(logs.get('acc'))
+          plt.ion()
   
       def on_epoch_end(self, batch, logs = {}):
           self.training_losses.append(logs.get('loss'))
@@ -68,8 +64,8 @@ for cell_line in cell_lines:
           self.epoch += 1
           val_predict = model.predict_classes([X_enhancers, X_promoters], batch_size = batch_size, verbose = 0)
           util.print_live(self, labels, val_predict, logs)
-          # if self.epoch > 1: # need at least two time points to plot
-          #     util.plot_live(self)
+          if self.epoch > 1: # need at least two time points to plot
+              util.plot_live(self)
   
   # print '\nlabels.mean(): ' + str(labels.mean())
   print 'Data sizes: '
@@ -79,8 +75,7 @@ for cell_line in cell_lines:
   # Instantiate callbacks
   confusionMatrix = ConfusionMatrix()
   checkpoint_path = "/home/sss1/Desktop/projects/DeepInteractions/weights/test-delete-this-" + cell_line + "-basic-" + t + ".hdf5"
-  checkpointer = ModelCheckpoint(filepath=checkpoint_path,
-                                  verbose=1)
+  checkpointer = ModelCheckpoint(filepath=checkpoint_path, verbose = 1)
 
   print 'Running fully trainable model for exactly ' + str(num_epochs) + ' epochs...'
   model.fit([X_enhancers, X_promoters],
@@ -91,7 +86,3 @@ for cell_line in cell_lines:
               shuffle = True,
               callbacks=[confusionMatrix, checkpointer]
               )
-  
-  # plotName = cell_line + '_' + t + '.png'
-  # plt.savefig(plotName)
-  # print 'Saved loss plot to ' + plotName

@@ -69,6 +69,7 @@ def print_live(conf_mat_callback, y_val, val_predict, logs):
     print 'Actual fractions: ' + str(y_val.mean()) + '\n'
 
 # Plots several metrics (Precision/Recall/F1, loss, Accuracy) in real time
+# (i.e., after each epoch)
 def plot_live(conf_mat_callback):
 
     epoch = conf_mat_callback.epoch
